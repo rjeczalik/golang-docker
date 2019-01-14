@@ -7,4 +7,8 @@ RUN apt-get update && apt-get install apt-utils apt-transport-https -y && \
 	apt-get install docker-compose docker-engine -y && \
 	apt-get clean
 
-ENTRYPOINT /bin/bash
+ADD docker-entrypoint.sh .
+
+VOLUME ["/var/run/docker.sock"]
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
